@@ -23,7 +23,6 @@ public class IndexBuilder {
         Thread[] threads = new Thread[threadsNumber];
 
         for (int i = 0; i < threadsNumber; ++i) {
-            System.out.println("Init thread-" + i);
             threads[i] = new IndexBuilderThread(
                     files.length / threadsNumber * i,
                     i == (threadsNumber - 1) ? files.length : files.length / threadsNumber * (i + 1)
