@@ -22,7 +22,7 @@ public class IndexBuilder {
         index = new ConcurrentHashMap<>(32768, 0.75f, threadsNumber);
         Thread[] threads = new Thread[threadsNumber];
 
-        for (int i = 0; i < threadsNumber; ++i) {
+        for (int i = 0; i < threadsNumber + 1; ++i) {
             threads[i] = new IndexBuilderThread(
                     files.length / threadsNumber * i,
                     i == (threadsNumber - 1) ? files.length : files.length / threadsNumber * (i + 1)
