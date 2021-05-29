@@ -7,7 +7,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-
 public class IndexBuilder {
 
     private File[] files;
@@ -17,13 +16,10 @@ public class IndexBuilder {
     public IndexBuilder(String dirPath,  int threadsNumber) {
         this.files = new File(System.getProperty("user.dir") + dirPath).listFiles();
         this.threadsNumber = threadsNumber;
-        System.out.println("Index builder constructor");
     }
 
     public Index buildIndex() {
-        System.out.println("IndexBuilder: buildIndex()");
         index = new ConcurrentHashMap<>(32768, 0.75f, threadsNumber);
-        System.out.println("CHM created");
         Thread[] threads = new Thread[threadsNumber];
 
         for (int i = 0; i < threadsNumber; ++i) {
@@ -32,7 +28,6 @@ public class IndexBuilder {
                     files.length / threadsNumber * i,
                     i == (threadsNumber - 1) ? files.length : files.length / threadsNumber * (i + 1)
             );
-            System.out.println("call start for thread-" +i);
             threads[i].start();
         }
         try {
@@ -59,13 +54,11 @@ public class IndexBuilder {
         private final int end;
 
         IndexBuilderThread(int start, int end) {
-            System.out.println("IndexBuilderThread constructor");
             this.start = start;
             this.end = end;
         }
 
         public void run() {
-            System.out.println("IndexBuilderThread method run()" + start + " to " + end);
             for (int i = start; i < end; ++i) {
                 try {
                     Path file = files[i].toPath();
@@ -84,7 +77,6 @@ public class IndexBuilder {
                     e.printStackTrace();
                 }
             }
-            System.out.println("IndexBuilderThread after for");
         }
     }
 }
