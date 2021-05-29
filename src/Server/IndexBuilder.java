@@ -33,7 +33,6 @@ public class IndexBuilder {
         try {
             for (int i = 0; i < threadsNumber; i++) {
                 threads[i].join();
-                System.out.println(index.getOrDefault("car", null));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
