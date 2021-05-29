@@ -8,9 +8,9 @@ public class Client {
     static String ip = "localhost";
     static int port = 8000;
     static Socket clientSocket;
-    private static BufferedReader serverReader; // поток чтения из сокета
-    private static BufferedWriter clientWriter; // поток чтения в сокет
-    private static BufferedReader clientReader; // поток чтения с консоли
+    private static BufferedReader serverReader;
+    private static BufferedWriter clientWriter;
+    private static BufferedReader clientReader;
 
     public static void main(String[] args) {
         try {
