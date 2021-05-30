@@ -5,7 +5,7 @@ This is a course work for parallel computing to create inverted index data struc
 
 using Thread and implement server-client socket communication.
 
-##Setup
+## Setup
 To setup this project ypu need:
 ```
 git clone https://github.com/marina-gerasymova/course_work_parallel.git
