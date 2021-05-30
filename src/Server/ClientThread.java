@@ -41,14 +41,14 @@ class ClientThread extends Thread {
         try {
             Collection<String> invertedIndex = index.findInvertedIndex(word);
             if (invertedIndex == null) {
-                serverWriter.write("word" + word + "doesn't appear in source files\n"); // сообщение пользователю
+                serverWriter.write("word '" + word + "' doesn't appear in source files\n"); // сообщение пользователю
                 serverWriter.flush();
                 return;
             }
             String wordInfo = invertedIndex.stream().map(o -> o.toString()).collect( Collectors.joining(","));
             serverWriter.write(wordInfo + "\n");
             serverWriter.flush();
-            System.out.println("Send " + word + " info to client");
+            System.out.println("Send '" + word + "' info to client");
         } catch (IOException e) {
             e.printStackTrace();
             disconnectClient();
