@@ -39,14 +39,6 @@ public class IndexBuilder {
         return new Index(index);
     }
 
-    public Collection<String> findInvertedIndex(String word) {
-        if (index == null) {
-            return null;
-        }
-        Collection<String> files = index.getOrDefault(word, null);
-        return files;
-    }
-
     private class IndexBuilderThread extends Thread {
         private final int start;
         private final int end;
