@@ -13,12 +13,17 @@ public class Server {
     public static void main(String[] args) throws IOException {
         int THREADS_AMOUNT = 2;
         if (args.length > 0) {
-            THREADS_AMOUNT = Integer.parseInt(args[0]);
+            int CLA_threadsAmount = Integer.parseInt(args[0]);
+            THREADS_AMOUNT = CLA_threadsAmount > 1 ? CLA_threadsAmount : THREADS_AMOUNT;
         }
-        System.out.println(System.getProperty("user.dir"));
+        System.out.println("Number of threads: " + THREADS_AMOUNT);
         IndexBuilder builder = new IndexBuilder("/datasets", THREADS_AMOUNT);
         try {
+            long startTime = System.nanoTime();
             index = builder.buildIndex();
+            long elapsedTime = System.nanoTime() - startTime;
+            System.out.println("Total execution time in millis: "
+                    + elapsedTime/1000000);
         } catch (Exception e) {
             e.printStackTrace();
         }
